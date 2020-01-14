@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Resource;
 use Illuminate\Http\Request;
+use App\Http\Resources\Resource as ResourceResource;
 
-class ResourceController extends Controller
+
+class ResourcesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,7 @@ class ResourceController extends Controller
      */
     public function index()
     {
-        //
+        return Resource::get();
     }
 
     /**
@@ -22,10 +24,10 @@ class ResourceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+    // public function create()
+    // {
+    //     //
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -46,7 +48,7 @@ class ResourceController extends Controller
      */
     public function show(Resource $resource)
     {
-        //
+        return new ResourceResource($resource);
     }
 
     /**
