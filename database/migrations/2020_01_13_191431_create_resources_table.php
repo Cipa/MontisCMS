@@ -32,10 +32,6 @@ class CreateResourcesTable extends Migration
             $table->index('type_id');
             $table->index('template_id');
             $table->unique(['alias', 'parent']);
-
-            //$table->foreign('type_id')->references('id')->on('types');
-            //SQL: alter table `resources` add constraint `resources_type_id_foreign` foreign key (`type_id`) references `types` (`id`))
-            // $table->foreign('template_id')->references('id')->on('template');
         });
     }
 
