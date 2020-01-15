@@ -15,9 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/' . config('admin.path'), function () {
-    return 'admin';
-});
+// Route::get('/' . config('admin.path'), function () {
+//     return 'admin';
+// });
+
+Route::get('/' . config('admin.path'), 'AdminController@index')->name('admin');
+
 
 Auth::routes();
 
