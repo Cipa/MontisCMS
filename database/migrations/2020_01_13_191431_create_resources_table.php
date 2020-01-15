@@ -20,8 +20,8 @@ class CreateResourcesTable extends Migration
             $table->string('menu_title')->default('');
             $table->string('alias');
             $table->longText('content')->default('');
-            $table->unsignedBigInteger('template')->default(0);
-            $table->unsignedTinyInteger('type')->default(1);
+            $table->unsignedBigInteger('template_id')->default(0);
+            $table->unsignedTinyInteger('type_id')->default(1);
             $table->unsignedBigInteger('parent')->default(0);
             $table->timestamps();
             $table->timestamp('published_at')->nullable();
@@ -29,8 +29,8 @@ class CreateResourcesTable extends Migration
             $table->softDeletes();
 
             $table->index(['alias', 'parent']);
-            $table->index('type');
-            $table->index('template');
+            $table->index('type_id');
+            $table->index('template_id');
             $table->unique(['alias', 'parent']);
 
             //$table->foreign('type_id')->references('id')->on('types');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Resource;
 // use App\Template;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Resources\ResourceResource;
 
 
@@ -17,6 +18,7 @@ class ResourcesController extends Controller
      */
     public function index()
     {
+        return ResourceResource::collection(Resource::all());
     }
 
     /**

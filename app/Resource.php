@@ -3,14 +3,20 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Resource extends Model
 {
     use SoftDeletes;
 
-    public function template()
+    public function template(): BelongsTo
     {
-        return $this->hasOne('App\Template');
+        return $this->belongsTo('App\Template');
+    }
+
+    public function type(): BelongsTo
+    {
+        return $this->belongsTo('App\Type');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Template;
+use App\Http\Resources\TemplateResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ResourceResource extends JsonResource
@@ -15,13 +16,12 @@ class ResourceResource extends JsonResource
      */
     public function toArray($request)
     {
-        $data = parent::toArray($request);
-        $data['template'] = Template::where('id', $this->template)->first();
-        return [
-            'data' => $data,
-            'links' => [
-                'self' => '',
-            ],
-        ];
+        return array_merge(
+            parent::toArray($request),
+            [
+                'template' => $this->template,
+                'type' => $this->type
+            ]
+        );
     }
 }
