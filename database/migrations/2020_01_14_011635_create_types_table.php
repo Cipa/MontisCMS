@@ -16,6 +16,8 @@ class CreateTypesTable extends Migration
         Schema::create('types', function (Blueprint $table) {
             $table->tinyIncrements('id');
             $table->string('name');
+
+            //$table->foreign('user_id')->references('id')->on('users');
         });
 
         //defaults

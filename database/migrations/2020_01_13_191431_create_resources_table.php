@@ -20,16 +20,22 @@ class CreateResourcesTable extends Migration
             $table->string('menu_title')->default('');
             $table->string('alias');
             $table->longText('content')->default('');
-            $table->unsignedBigInteger('template_id')->default(0);
-            $table->unsignedTinyInteger('type_id')->default(1);
-            $table->unsignedBigInteger('parent_id')->default(0);
+            $table->unsignedBigInteger('template')->default(0);
+            $table->unsignedTinyInteger('type')->default(1);
+            $table->unsignedBigInteger('parent')->default(0);
             $table->timestamps();
             $table->timestamp('published_at')->nullable();
 
             $table->softDeletes();
 
-            $table->index(['alias', 'parent_id']);
-            $table->unique(['alias', 'parent_id']);
+            $table->index(['alias', 'parent']);
+            $table->index('type');
+            $table->index('template');
+            $table->unique(['alias', 'parent']);
+
+            //$table->foreign('type_id')->references('id')->on('types');
+            //SQL: alter table `resources` add constraint `resources_type_id_foreign` foreign key (`type_id`) references `types` (`id`))
+            // $table->foreign('template_id')->references('id')->on('template');
         });
     }
 

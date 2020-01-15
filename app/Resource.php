@@ -9,13 +9,8 @@ class Resource extends Model
 {
     use SoftDeletes;
 
-    // public function content()
-    // {
-    //     return $this->hasOne('Content');
-    // }
-
-    // public function link()
-    // {
-    //     return $this->hasOne('Link');
-    // }
+    public function template()
+    {
+        return $this->hasOne('App\Template');
+    }
 }

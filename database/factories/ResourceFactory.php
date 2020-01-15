@@ -10,13 +10,13 @@ $factory->define(Resource::class, function (Faker $faker) {
 
     $name  = $faker->sentence(3, true);
     return [
-        'title' => $name,
+        'title' => $faker->$name,
         'description' => $faker->paragraph(),
-        //'menu_title' => $name,
+        'menu_title' => $faker->sentence(3, true), //new name/menu title
         'alias' => Str::slug($name, '-'),
         'content' => $faker->paragraphs(4, true),
-        'type_id' => 1,
-        'template_id' => 0,
+        'type' => 1,
+        'template' => 1,
         'created_at' => now()->toDateTimeString(),
         'published_at' => now()->toDateTimeString()
     ];

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Resource;
+// use App\Template;
 use Illuminate\Http\Request;
-use App\Http\Resources\Resource as ResourceResource;
+use App\Http\Resources\ResourceResource;
 
 
 class ResourcesController extends Controller
@@ -16,7 +17,6 @@ class ResourcesController extends Controller
      */
     public function index()
     {
-        return Resource::get();
     }
 
     /**
