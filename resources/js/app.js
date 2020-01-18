@@ -1,12 +1,6 @@
 import Vue from 'vue';
-import VueRouter from 'vue-router'
+import router from './router';
 import Backend from './components/Backend';
-
-
-Vue.use(VueRouter);
-
-
-
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -59,5 +53,5 @@ new Vue({
     components: {
         Backend
     },
-    VueRouter
+    router
 })

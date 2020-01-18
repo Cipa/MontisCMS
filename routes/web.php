@@ -19,7 +19,11 @@ Route::get('/', function () {
 //     return 'admin';
 // });
 
-Route::get('/' . config('admin.path'), 'AdminController@index')->name('admin');
+Route::get('/' . config('admin.path') . '/{any}', 'AdminController@index')->name('admin')->where('any', '.*');
+
+// Route::any('/', function () {
+//     //
+// });
 
 
 Auth::routes();

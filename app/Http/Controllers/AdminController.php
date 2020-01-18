@@ -23,6 +23,6 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('backend');
+        return view('backend')->with(['config' => config('admin')]);
     }
 }
