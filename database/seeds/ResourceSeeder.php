@@ -12,6 +12,6 @@ class ResourceSeeder extends Seeder
     public function run()
     {
         factory(App\Resource::class)->create();
-        factory(App\Resource::class)->create(['template_id' => 0]);
+        factory(App\Resource::class)->create();
     }
 }

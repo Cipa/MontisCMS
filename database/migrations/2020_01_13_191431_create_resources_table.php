@@ -20,7 +20,7 @@ class CreateResourcesTable extends Migration
             $table->string('menu_title')->default('');
             $table->string('alias');
             $table->longText('content')->default('');
-            $table->unsignedBigInteger('template_id')->default(0);
+            $table->unsignedBigInteger('template_id')->default(1);
             $table->unsignedTinyInteger('type_id')->default(1);
             $table->unsignedBigInteger('parent')->default(0);
             $table->timestamps();

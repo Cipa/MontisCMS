@@ -11,14 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // Route::get('/' . config('admin.path'), function () {
 //     return 'admin';
 // });
-
+// dd(config('admin.path'));
+Route::get('/' . config('admin.path'), 'AdminController@index')->name('admin');
 Route::get('/' . config('admin.path') . '/{any}', 'AdminController@index')->name('admin')->where('any', '.*');
 
 // Route::any('/', function () {
@@ -26,6 +27,6 @@ Route::get('/' . config('admin.path') . '/{any}', 'AdminController@index')->name
 // });
 
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');

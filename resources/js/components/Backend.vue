@@ -5,7 +5,8 @@
                 <div class="flex items-center">
                     <div class="w-1/4 h-12 align-middle flex items-center">
                         <router-link
-                            :to="{path: config.path}"
+                            :to="{path: '/' + config.path}"
+                            :key="$route.fullPath"
                             class="font-bold text-lg text-gray-800"
                         >MontisCMS</router-link>
                     </div>
@@ -43,8 +44,8 @@
                 </div>
             </div>
             <main class="max-h-full w-full">
-                <div class="bg-teal-100 h-full">
-                    <ResourceShow endpoint="/api/resources" :key="$route.fullPath"></ResourceShow>
+                <div class="h-full">
+                    <router-view class="p-4" :key="$route.fullPath"></router-view>
                 </div>
             </main>
         </div>
@@ -53,14 +54,16 @@
 
 <script>
 import ResourcesTree from "./ResourcesTree";
-import ResourceShow from "./ResourceShow";
 
 export default {
     name: "Backend",
     props: ["config"],
+    mounted() {},
     components: {
-        ResourcesTree,
-        ResourceShow
+        ResourcesTree
+    },
+    data: function() {
+        return {};
     }
 };
 </script>

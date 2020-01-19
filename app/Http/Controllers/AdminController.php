@@ -14,6 +14,7 @@ class AdminController extends Controller
     public function __construct()
     {
         //$this->middleware('auth');
+
     }
 
     /**
@@ -23,6 +24,7 @@ class AdminController extends Controller
      */
     public function index()
     {
+
         return view('backend')->with(['config' => config('admin')]);
     }
 }
