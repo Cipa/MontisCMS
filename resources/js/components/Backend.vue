@@ -1,52 +1,32 @@
 <template>
-    <div class="h-screen relative overflow-y-hidden">
-        <div class="xfixed xtop-0 xinset-x-0">
-            <div class="w-full max-w-screen-xl relative mx-auto px-4 border border-b-4 bg-gray-100">
-                <div class="flex items-center">
-                    <div class="w-1/4 h-12 align-middle flex items-center">
-                        <router-link
-                            :to="{path: '/' + config.path}"
-                            :key="$route.fullPath"
-                            class="font-bold text-lg text-gray-800"
-                        >MontisCMS</router-link>
-                    </div>
-                    <div class="flex flex-grow">
-                        <div class="flex w-full items-center align-middle h-12">
-                            <ul class="flex">
-                                <li class="mr-6">
-                                    <a class="text-blue-500 hover:text-blue-800" href="#">Active</a>
-                                </li>
-                                <li class="mr-6">
-                                    <a class="text-blue-500 hover:text-blue-800" href="#">Link</a>
-                                </li>
-                                <li class="mr-6">
-                                    <a class="text-blue-500 hover:text-blue-800" href="#">Link</a>
-                                </li>
-                                <li class="mr-6">
-                                    <a class="text-gray-400 cursor-not-allowed" href="#">Disabled</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="w-1/4 flex items-center justify-end">
-                            <div>
-                                <button class>Account</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="wrapper">
+        <b-navbar class="has-border-bottom-width-3">
+            <template slot="brand">
+                <b-navbar-item
+                    tag="router-link"
+                    :to="{path: '/' + config.path}"
+                    class="is-size-5"
+                >MontisCMS</b-navbar-item>
+            </template>
 
-        <div class="flex h-full max-h-full">
-            <div class="w-1/4 border-r-4">
-                <div class="bg-teal-100 h-full max-h-full">
-                    <ResourcesTree></ResourcesTree>
-                </div>
-            </div>
-            <main class="max-h-full w-full">
-                <div class="h-full">
-                    <router-view class="p-4" :key="$route.fullPath"></router-view>
-                </div>
+            <template slot="end">
+                <b-navbar-item tag="div">
+                    <div class="buttons">
+                        <a class="button is-primary">
+                            <strong>Config</strong>
+                        </a>
+                        <a class="button is-light">Log Out</a>
+                    </div>
+                </b-navbar-item>
+            </template>
+        </b-navbar>
+        <div class="wrapper2">
+            <aside class="has-border-right-width-3">
+                <ResourcesTree></ResourcesTree>
+            </aside>
+
+            <main>
+                <router-view :key="$route.fullPath"></router-view>
             </main>
         </div>
     </div>
@@ -67,3 +47,4 @@ export default {
     }
 };
 </script>
+

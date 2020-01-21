@@ -10,6 +10,8 @@ class Resource extends Model
 {
     use SoftDeletes;
 
+    protected $guarded = [];
+
     public function template(): BelongsTo
     {
         return $this->belongsTo('App\Template');

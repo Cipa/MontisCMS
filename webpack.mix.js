@@ -19,6 +19,8 @@ const tailwindcss = require('tailwindcss');
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
+    .copy('node_modules/tinymce', 'public/js/tinymce')
+
     .options({
         processCssUrls: false,
         postCss: [tailwindcss('./tailwind.config.js')],
@@ -62,4 +64,4 @@ mix.js('resources/js/app.js', 'public/js')
    //    // processCssUrls: false,
 
    //    // postCss: [tailwindcss('./tailwind.config.js')],
-   // })  
+   // })

@@ -7,6 +7,7 @@ use App\Resource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\ResourceResource;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class ResourcesController extends Controller
@@ -71,9 +72,14 @@ class ResourcesController extends Controller
      * @param  \App\Resource  $resource
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Resource $Resource)
+    public function update(Request $request, Resource $resource)
     {
-        //
+
+        $resource->update($this->validateData());
+
+        return (new ResourceResource($resource))
+            ->response()
+            ->setStatusCode(Response::HTTP_OK);
     }
 
     /**
@@ -85,5 +91,17 @@ class ResourcesController extends Controller
     public function destroy(Resource $resource)
     {
         //
+    }
+
+
+    private function validateData()
+    {
+        return request()->validate([
+            'title' => 'required|max:255',
+            'menu_title' => 'max:255',
+            'alias' => 'max:255',
+            'description' => 'max:255',
+            'content' => '', //TODO: purify
+        ]);
     }
 }

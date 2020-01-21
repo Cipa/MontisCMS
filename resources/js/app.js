@@ -1,6 +1,15 @@
 import Vue from 'vue';
 import router from './router';
 import Backend from './components/Backend';
+import Editor from '@tinymce/tinymce-vue'
+
+import Buefy from 'buefy'
+import 'buefy/dist/buefy.css'
+import 'bulma-helpers/css/bulma-helpers.min.css'
+
+Vue.use(Buefy);
+Vue.use(Editor);
+
 
 /**
  * First we will load all of this project's JavaScript dependencies which

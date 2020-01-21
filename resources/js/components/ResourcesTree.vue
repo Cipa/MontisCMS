@@ -1,9 +1,17 @@
 <template>
     <div>
-        <div class="p-2">
-            <div v-if="loading">Loading</div>
-            <div v-else>
-                <div v-for="resource in resources" v-bind:key="resource.id">
+        <div v-if="loading">Loading</div>
+        <div v-else>
+            <b-menu>
+                <b-menu-list v-for="resource in resources" v-bind:key="resource.id">
+                    <b-menu-item
+                        :label="resource.title"
+                        tag="router-link"
+                        :to="'/' + $parent.config.path + '/resources/' + resource.id"
+                    ></b-menu-item>
+                </b-menu-list>
+            </b-menu>
+            <!-- <div v-for="resource in resources" v-bind:key="resource.id">
                     <router-link
                         :to="'/' + $parent.config.path + '/resources/' + resource.id"
                         :key="$route.fullPath"
@@ -13,8 +21,7 @@
                             class="text-blue-800 text-xs border-gray-300 border-b"
                         >{{ resource.title }}</p>
                     </router-link>
-                </div>
-            </div>
+            </div>-->
         </div>
     </div>
 </template>
