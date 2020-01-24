@@ -1,6 +1,13 @@
 <template>
-    <div class="py-2 px-4">
+    <div>
         <form @submit.prevent="submitForm">
+            <div class="buttons justify-end">
+                <b-button tag="input" native-type="submit" value="Save" class="button is-info" />
+                <!-- <button class="button is-success">Success</button>
+            <button class="button is-warning">Warning</button>
+                <button class="button is-danger">Danger</button>-->
+            </div>
+
             <b-field
                 label="Title"
                 :type="{'is-danger': (errors && errors.title)}"
@@ -11,10 +18,10 @@
 
             <b-field
                 label="Menu Title"
-                :type="{'is-danger': (errors && errors.menuTitle)}"
-                :message="(errors && errors.menuTitle) ? errors.menuTitle : ''"
+                :type="{'is-danger': (errors && errors.menu_title)}"
+                :message="(errors && errors.menu_title) ? errors.menu_title : ''"
             >
-                <b-input v-model="form.menuTitle" placeholder="Menu Title"></b-input>
+                <b-input v-model="form.menu_title" placeholder="Menu Title"></b-input>
             </b-field>
 
             <b-field
@@ -50,8 +57,6 @@
                     bullist numlist outdent indent | removeformat | code help'
                 }"
             ></editor>
-
-            <b-button tag="input" native-type="submit" value="Save" />
         </form>
     </div>
 </template>
@@ -96,7 +101,8 @@ export default {
             axios
                 .patch("/api/resources/" + this.$route.params.id, this.form)
                 .then(response => {
-                    this.$router.push(response.data.links.self);
+                    //this.$router.push(response.data.links.self);
+                    console.log(response);
                 })
                 .catch(errors => {
                     this.errors = errors.response.data.errors;

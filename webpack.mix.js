@@ -17,8 +17,8 @@ const tailwindcss = require('tailwindcss');
 
 //.copy('node_modules/material-design-icons-iconfont/css/material-icons.min.css', 'public/css/material-icons.min.css')
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css')
+mix.js('resources/js/backend.js', 'public/js')
+    .sass('resources/sass/backend.scss', 'public/css')
     .copy('node_modules/tinymce', 'public/js/tinymce')
 
     .options({

@@ -8,21 +8,21 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name') }}</title>
+    <title>{{ config('backend.name') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/backend.js') }}" defer></script>
 
     <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
 
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/backend.css') }}" rel="stylesheet">
 
 </head>
 
 <body>
-    <div id="app">
+    <div id="backend">
         @yield('content')
     </div>
 </body>

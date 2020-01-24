@@ -1,0 +1,87 @@
+// Fonts
+// @import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+// @import 'variables';
+
+// Bootstrap
+// @import '~bootstrap/scss/bootstrap';
+
+// @import '~element-ui/lib/theme-chalk/index.css';
+
+// @tailwind base;
+
+//@tailwind components;
+
+//@tailwind utilities;
+
+
+
+
+// https://codepen.io/damboldt/pen/yLLKOrR
+
+// @import 'material-design-icons-iconfont/src/material-design-icons';
+
+// Import Bulma's core
+@import "~bulma/sass/utilities/_all";
+
+// // Set your colors
+// $primary: #8c67ef;
+// $primary-invert: findColorInvert($primary);
+// $twitter: #4099FF;
+// $twitter-invert: findColorInvert($twitter);
+
+// // Setup $colors to use as bulma classes (e.g. 'is-twitter')
+// $colors: (
+//     "white": ($white, $black),
+//     "black": ($black, $white),
+//     "light": ($light, $light-invert),
+//     "dark": ($dark, $dark-invert),
+//     "primary": ($primary, $primary-invert),
+//     "info": ($info, $info-invert),
+//     "success": ($success, $success-invert),
+//     "warning": ($warning, $warning-invert),
+//     "danger": ($danger, $danger-invert),
+//     "twitter": ($twitter, $twitter-invert)
+// );
+
+// // Links
+// $link: $primary;
+// $link-invert: $primary-invert;
+// $link-focus-border: $primary;
+
+// Import Bulma and Buefy styles
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
+@import '~bulma-helpers/css/bulma-helpers';
+
+#backend,
+.wrapper,
+html,
+body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+nav{
+    border-bottom: solid 3px #f5f5f5;
+}
+.wrapper2 {
+    flex: 2;
+    display: flex;
+    overflow: hidden;
+    // height: 100%;
+}
+aside {
+    flex: 1;
+    overflow-y:auto;
+    background-color: #f5f5f5;
+}
+main {
+    flex: 3;
+    overflow-y:auto
+}

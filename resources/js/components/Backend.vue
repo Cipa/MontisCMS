@@ -21,11 +21,11 @@
             </template>
         </b-navbar>
         <div class="wrapper2">
-            <aside class="has-border-right-width-3">
+            <aside class="has-border-right-width-3 has-border-red">
                 <ResourcesTree></ResourcesTree>
             </aside>
 
-            <main>
+            <main class="has-padding-10">
                 <router-view :key="$route.fullPath"></router-view>
             </main>
         </div>
@@ -34,10 +34,37 @@
 
 <script>
 import ResourcesTree from "./ResourcesTree";
+//import { mapState } from "vuex";
 
 export default {
     name: "Backend",
     props: ["config"],
+    computed: {
+        //...mapState(["setGlobalLoading"])
+    },
+    created() {
+        window.axios.interceptors.request.use(
+            config => {
+                //this.$store.commit("setGlobalLoading", true);
+                return config;
+            },
+            error => {
+                //this.$store.commit("setGlobalLoading", false);
+                return Promise.reject(error);
+            }
+        );
+
+        window.axios.interceptors.response.use(
+            response => {
+                //this.$store.commit("setGlobalLoading", false);
+                return response;
+            },
+            error => {
+                //this.$store.commit("setGlobalLoading", false);
+                return Promise.reject(error);
+            }
+        );
+    },
     mounted() {},
     components: {
         ResourcesTree

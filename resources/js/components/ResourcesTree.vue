@@ -11,17 +11,6 @@
                     ></b-menu-item>
                 </b-menu-list>
             </b-menu>
-            <!-- <div v-for="resource in resources" v-bind:key="resource.id">
-                    <router-link
-                        :to="'/' + $parent.config.path + '/resources/' + resource.id"
-                        :key="$route.fullPath"
-                        class="hover:bg-gray-100"
-                    >
-                        <p
-                            class="text-blue-800 text-xs border-gray-300 border-b"
-                        >{{ resource.title }}</p>
-                    </router-link>
-            </div>-->
         </div>
     </div>
 </template>
