@@ -64,6 +64,7 @@
 
 <script>
 import Editor from "@tinymce/tinymce-vue";
+
 export default {
     name: "ResourceEdit",
 
@@ -101,8 +102,7 @@ export default {
             axios
                 .patch("/api/resources/" + this.$route.params.id, this.form)
                 .then(response => {
-                    //this.$router.push(response.data.links.self);
-                    console.log(response);
+                    this.$store.dispatch("loadResourcesTree");
                 })
                 .catch(errors => {
                     this.errors = errors.response.data.errors;

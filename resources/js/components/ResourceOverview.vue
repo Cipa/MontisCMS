@@ -2,7 +2,7 @@
     <div class="py-2 px-4">
         <div v-if="loading">Loading</div>
         <div v-else>
-            <div class="float-right">
+            <div class="buttons justify-end">
                 <b-button
                     tag="router-link"
                     :to="'/' + this.$parent.config.path + '/resources/' + resource.id + '/edit'"
@@ -11,6 +11,7 @@
 
                 <b-button tag="router-link" to="/expo" type="is-danger">Delete</b-button>
             </div>
+
             <p class="text-gray-600 text-sm">Title: {{resource.title}}</p>
             <p class="text-gray-600 text-sm">Menu Title: {{resource.menu_title}}</p>
             <p class="text-gray-600 text-sm">Description: {{resource.alias}}</p>

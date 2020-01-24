@@ -43,27 +43,26 @@ export default {
         //...mapState(["setGlobalLoading"])
     },
     created() {
-        window.axios.interceptors.request.use(
-            config => {
-                //this.$store.commit("setGlobalLoading", true);
-                return config;
-            },
-            error => {
-                //this.$store.commit("setGlobalLoading", false);
-                return Promise.reject(error);
-            }
-        );
-
-        window.axios.interceptors.response.use(
-            response => {
-                //this.$store.commit("setGlobalLoading", false);
-                return response;
-            },
-            error => {
-                //this.$store.commit("setGlobalLoading", false);
-                return Promise.reject(error);
-            }
-        );
+        // window.axios.interceptors.request.use(
+        //     config => {
+        //         //this.$store.commit("setGlobalLoading", true);
+        //         return config;
+        //     },
+        //     error => {
+        //         //this.$store.commit("setGlobalLoading", false);
+        //         return Promise.reject(error);
+        //     }
+        // );
+        // window.axios.interceptors.response.use(
+        //     response => {
+        //         //this.$store.commit("setGlobalLoading", false);
+        //         return response;
+        //     },
+        //     error => {
+        //         //this.$store.commit("setGlobalLoading", false);
+        //         return Promise.reject(error);
+        //     }
+        // );
     },
     mounted() {},
     components: {

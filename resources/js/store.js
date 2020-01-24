@@ -5,12 +5,28 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        globalLoading: false
+        resourcesTree: [],
+        //globalLoading: false, //not used
+        //reloadTree: false //watch for reload tree - not used
+    },
+    actions: {
+        loadResourcesTree({ commit }) {
+            axios.get('/api/resources').then(result => {
+                commit('LOAD_RESOURCES_TREE', result.data.data);
+            }).catch(error => {
+                throw new Error(`API ${error}`);
+            });
+        }
     },
     mutations: {
-
-        setGlobalLoading(state, globalLoading) {
-            state.globalLoading = globalLoading;
+        // setGlobalLoading(state, globalLoading) {
+        //     state.globalLoading = globalLoading;
+        // },
+        // reloadTree(state) {
+        //     state.reloadTree = true;
+        // },
+        LOAD_RESOURCES_TREE(state, resourcesTree) {
+            state.resourcesTree = resourcesTree;
         },
     }
 })
