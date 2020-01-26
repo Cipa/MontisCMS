@@ -19,6 +19,9 @@ use Illuminate\Http\Request;
 
 Route::get('/resources', 'ResourcesController@index');
 Route::post('/resources', 'ContactsController@store');
-Route::get('/resources/{resource}', 'ResourcesController@show');
-Route::patch('/resources/{resource}', 'ResourcesController@update');
-Route::delete('/resources/{resource}', 'ResourcesController@destroy');
+Route::get('/resources/{resource}', 'ResourcesController@show')->where('resource', '[0-9]+');
+Route::patch('/resources/{resource}', 'ResourcesController@update')->where('resource', '[0-9]+');
+Route::delete('/resources/{resource}', 'ResourcesController@destroy')->where('resource', '[0-9]+');
+
+Route::get('/types', 'TypesController@index');
+Route::get('/templates', 'TemplatesController@index');

@@ -32,16 +32,6 @@
                 <b-input v-model="form.alias" placeholder="Alias"></b-input>
             </b-field>
 
-            <!-- <b-field label="Resource Type">
-                <b-select placeholder="Select a type">
-                    <option
-                        v-for="option in data"
-                        :value="option.id"
-                        :key="option.id"
-                    >{{ option.user.first_name }}</option>
-                </b-select>
-            </b-field>-->
-
             <b-field label="Description">
                 <b-input
                     v-model="form.description"
@@ -51,9 +41,33 @@
                 ></b-input>
             </b-field>
 
-            <editor
-                v-model="form.content"
-                :init="{
+            <div class="columns">
+                <b-field label="Resource Type" class="column">
+                    <b-select placeholder="Select a type" v-model="form.type_id" expanded>
+                        <option
+                            v-for="type in types"
+                            :value="type.id"
+                            :key="type.id"
+                        >{{ type.name }}</option>
+                    </b-select>
+                </b-field>
+                <b-field label="Template" class="column">
+                    <b-select placeholder="Select a template" v-model="form.template_id" expanded>
+                        <option
+                            v-for="template in templates"
+                            :value="template.id"
+                            :key="template.id"
+                        >{{ template.name }}</option>
+                    </b-select>
+                </b-field>
+            </div>
+
+            <div class="field">
+                <label class="label">Content</label>
+                <div class="control">
+                    <editor
+                        v-model="form.content"
+                        :init="{
                     height: 200,
                     menubar: false,
                     plugins: [
@@ -66,7 +80,9 @@
                     alignleft aligncenter alignright alignjustify | \
                     bullist numlist outdent indent | removeformat | code help'
                 }"
-            ></editor>
+                    ></editor>
+                </div>
+            </div>
         </form>
     </div>
 </template>
@@ -79,18 +95,6 @@ export default {
     name: "ResourceEdit",
 
     components: { Editor },
-
-    mounted() {
-        axios
-            .get("/api/resources/" + this.$route.params.id)
-            .then(response => {
-                this.form = response.data.data;
-            })
-            .catch(error => {
-                alert(error);
-            });
-    },
-
     data: function() {
         return {
             form: {
@@ -103,10 +107,25 @@ export default {
                 template_id: ""
             },
 
+            types: [],
+            templates: [],
+
             errors: null
         };
     },
+    mounted() {
+        axios
+            .get("/api/resources/" + this.$route.params.id)
+            .then(response => {
+                this.form = response.data.data;
+            })
+            .catch(error => {
+                alert(error);
+            });
 
+        this.getTypes();
+        this.getTemplates();
+    },
     methods: {
         submitForm: function() {
             axios
@@ -117,6 +136,26 @@ export default {
                 .catch(errors => {
                     this.errors = errors.response.data.errors;
                     throw new Error(`API ${errors}`);
+                });
+        },
+        getTypes: function() {
+            axios
+                .get("/api/types")
+                .then(response => {
+                    this.types = response.data.data;
+                })
+                .catch(error => {
+                    alert(error);
+                });
+        },
+        getTemplates: function() {
+            axios
+                .get("/api/templates")
+                .then(response => {
+                    this.templates = response.data.data;
+                })
+                .catch(error => {
+                    alert(error);
                 });
         }
     }

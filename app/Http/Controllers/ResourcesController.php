@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Resource;
-// use App\Template;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\ResourceResource;
@@ -102,6 +101,8 @@ class ResourcesController extends Controller
             'alias' => 'max:255',
             'description' => 'max:255',
             'content' => '', //TODO: purify
+            'type_id' => 'integer',
+            'template_id' => 'integer',
         ]);
     }
 }
