@@ -32,6 +32,16 @@
                 <b-input v-model="form.alias" placeholder="Alias"></b-input>
             </b-field>
 
+            <!-- <b-field label="Resource Type">
+                <b-select placeholder="Select a type">
+                    <option
+                        v-for="option in data"
+                        :value="option.id"
+                        :key="option.id"
+                    >{{ option.user.first_name }}</option>
+                </b-select>
+            </b-field>-->
+
             <b-field label="Description">
                 <b-input
                     v-model="form.description"
@@ -88,9 +98,9 @@ export default {
                 description: "",
                 menu_title: "",
                 alias: "",
-                content: ""
-                // type_id: "",
-                // template_id: ""
+                content: "",
+                type_id: "",
+                template_id: ""
             },
 
             errors: null
@@ -106,6 +116,7 @@ export default {
                 })
                 .catch(errors => {
                     this.errors = errors.response.data.errors;
+                    throw new Error(`API ${errors}`);
                 });
         }
     }

@@ -4,7 +4,7 @@
             <b-menu-item
                 :label="resource.title"
                 tag="router-link"
-                :to="'/' + $parent.config.path + '/resources/' + resource.id"
+                :to="{name: 'resourceOverview', params: { id: resource.id }}"
             ></b-menu-item>
         </b-menu-list>
     </b-menu>

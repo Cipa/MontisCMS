@@ -4,7 +4,7 @@
             <template slot="brand">
                 <b-navbar-item
                     tag="router-link"
-                    :to="{path: '/' + config.path}"
+                    :to="{name: 'dashboard'}"
                     class="is-size-5"
                 >MontisCMS</b-navbar-item>
             </template>
@@ -41,29 +41,9 @@ export default {
     props: ["config"],
     computed: {
         //...mapState(["setGlobalLoading"])
+        // this.$router.push("/admin");
     },
-    created() {
-        // window.axios.interceptors.request.use(
-        //     config => {
-        //         //this.$store.commit("setGlobalLoading", true);
-        //         return config;
-        //     },
-        //     error => {
-        //         //this.$store.commit("setGlobalLoading", false);
-        //         return Promise.reject(error);
-        //     }
-        // );
-        // window.axios.interceptors.response.use(
-        //     response => {
-        //         //this.$store.commit("setGlobalLoading", false);
-        //         return response;
-        //     },
-        //     error => {
-        //         //this.$store.commit("setGlobalLoading", false);
-        //         return Promise.reject(error);
-        //     }
-        // );
-    },
+    created() {},
     mounted() {},
     components: {
         ResourcesTree

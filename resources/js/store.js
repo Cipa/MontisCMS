@@ -14,7 +14,8 @@ export default new Vuex.Store({
             axios.get('/api/resources').then(result => {
                 commit('LOAD_RESOURCES_TREE', result.data.data);
             }).catch(error => {
-                throw new Error(`API ${error}`);
+                alert("Unable to fetch the tree.");
+                //throw new Error(`API ${error}`);
             });
         }
     },
