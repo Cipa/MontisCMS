@@ -20,8 +20,8 @@ class CreateTypesTable extends Migration
 
         //defaults
         App\Type::create(['name' => 'Document']);
-        App\Type::create(['name' => 'WebLink']);
-        App\Type::create(['name' => 'SymLink']);
+        // App\Type::create(['name' => 'WebLink']);
+        // App\Type::create(['name' => 'SymLink']);
     }
 
     /**

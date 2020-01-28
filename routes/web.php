@@ -15,6 +15,13 @@
 //     return view('welcome');
 // });
 
+
+// Route::get('/parse', function () {
+//     return view('parse', ['test' => 'James']);
+// });
+
+
+
 // Route::get('/' . config('admin.path'), function () {
 //     return 'admin';
 // });

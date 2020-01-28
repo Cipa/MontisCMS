@@ -1,5 +1,6 @@
 <?php
 
+use App\Resource;
 use Illuminate\Http\Request;
 
 /*
@@ -25,3 +26,11 @@ Route::delete('/resources/{resource}', 'ResourcesController@destroy')->where('re
 
 Route::get('/types', 'TypesController@index');
 Route::get('/templates', 'TemplatesController@index');
+
+
+// Route::get('/parse', function () {
+
+//     $data = Resource::where('id', 1)->first();
+
+//     return view('parse')->with(['test' => $data]);
+// });
