@@ -17,11 +17,6 @@ class CreateTypesTable extends Migration
             $table->tinyIncrements('id');
             $table->string('name');
         });
-
-        //defaults
-        App\Type::create(['name' => 'Document']);
-        // App\Type::create(['name' => 'WebLink']);
-        // App\Type::create(['name' => 'SymLink']);
     }
 
     /**

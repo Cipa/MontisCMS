@@ -11,6 +11,6 @@ $factory->define(Tv::class, function (Faker $faker) {
         'name' => Str::slug($faker->text(10), '-'),
         'caption' => $faker->text(20),
         'description' => $faker->text(50),
-        'type_id' => 1, 3
+        'type_id' => 1
     ];
 });

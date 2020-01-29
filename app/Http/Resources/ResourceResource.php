@@ -2,12 +2,8 @@
 
 namespace App\Http\Resources;
 
-use App\Template;
 use Illuminate\Support\Facades\Blade;
-use App\Http\Resources\TemplateResource;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Wpb\String_Blade_Compiler\Facades\StringBlade;
-use Wpb\String_Blade_Compiler\Compilers\BladeCompiler;
 
 class ResourceResource extends JsonResource
 {

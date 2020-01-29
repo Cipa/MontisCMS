@@ -11,6 +11,5 @@ class TvSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Tv::class)->create();
     }
 }

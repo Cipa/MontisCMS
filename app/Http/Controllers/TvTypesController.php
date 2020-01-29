@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Tv;
+use App\TvType;
 use Illuminate\Http\Request;
 
-class TvController extends Controller
+class TvTypesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,6 @@ class TvController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -41,10 +40,10 @@ class TvController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Tv  $tv
+     * @param  \App\TvType  $tvType
      * @return \Illuminate\Http\Response
      */
-    public function show(Tv $tv)
+    public function show(TvType $tvType)
     {
         //
     }
@@ -52,10 +51,10 @@ class TvController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Tv  $tv
+     * @param  \App\TvType  $tvType
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tv $tv)
+    public function edit(TvType $tvType)
     {
         //
     }
@@ -64,10 +63,10 @@ class TvController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Tv  $tv
+     * @param  \App\TvType  $tvType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tv $tv)
+    public function update(Request $request, TvType $tvType)
     {
         //
     }
@@ -75,10 +74,10 @@ class TvController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Tv  $tv
+     * @param  \App\TvType  $tvType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tv $tv)
+    public function destroy(TvType $tvType)
     {
         //
     }

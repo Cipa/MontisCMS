@@ -17,12 +17,6 @@ class CreateTvTypesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
         });
-
-        //defaults
-        App\TvType::create(['name' => 'Text']);
-        // App\TvType::create(['name' => 'Email']);
-        // App\TvType::create(['name' => 'Image']);
-        //...
     }
 
     /**

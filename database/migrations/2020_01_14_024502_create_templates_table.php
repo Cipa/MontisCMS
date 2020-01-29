@@ -19,9 +19,6 @@ class CreateTemplatesTable extends Migration
             $table->text('description')->default('');
             $table->timestamps();
         });
-
-        //defaults
-        App\Template::create(['name' => 'Default']);
     }
 
     /**
