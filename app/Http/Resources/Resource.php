@@ -2,10 +2,13 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Support\Facades\Blade;
+use App\Http\Resources\Template as TemplateResource;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Blade;
 
-class ResourceResource extends JsonResource
+use Illuminate\Support\Facades\DB;
+
+class Resource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -20,7 +23,7 @@ class ResourceResource extends JsonResource
         return array_merge(
             parent::toArray($request),
             [
-                'template' => $this->template,
+                'template' => new TemplateResource($this->template),
                 'type' => $this->type,
                 'parsedContent' => $parsedContent
             ]

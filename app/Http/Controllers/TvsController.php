@@ -47,7 +47,7 @@ class TvsController extends Controller
      */
     public function show(Tv $tv)
     {
-        //
+        return new TvResource($tv);
     }
 
     /**

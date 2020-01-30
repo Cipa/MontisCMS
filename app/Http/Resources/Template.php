@@ -2,9 +2,10 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\Tv as TvResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TemplateResource extends JsonResource
+class Template extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,12 +15,10 @@ class TemplateResource extends JsonResource
      */
     public function toArray($request)
     {
-        // return parent::toArray($request);
-
         return array_merge(
             parent::toArray($request),
             [
-                'tvs' => $this->tvs,
+                'tvs' => new TvResource($this->tvs),
             ]
         );
     }

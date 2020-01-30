@@ -26,6 +26,7 @@ Route::delete('/resources/{resource}', 'ResourcesController@destroy')->where('re
 
 Route::get('/types', 'TypesController@index');
 Route::get('/templates', 'TemplatesController@index');
+Route::get('/tvs', 'TvController@index');
 
 
 // Route::get('/parse', function () {

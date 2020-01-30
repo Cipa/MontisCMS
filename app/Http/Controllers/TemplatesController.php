@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Template as TemplateResource;
 use App\Template;
 use Illuminate\Http\Request;
-use App\Http\Resources\TemplateResource;
 
 class TemplatesController extends Controller
 {
@@ -37,7 +37,7 @@ class TemplatesController extends Controller
      */
     public function show(Template $template)
     {
-        //
+        return new TemplateResource($template);
     }
 
     /**

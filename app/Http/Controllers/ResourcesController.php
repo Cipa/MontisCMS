@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Resource as ResourceResource;
 use App\Resource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Resources\ResourceResource;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -18,7 +18,7 @@ class ResourcesController extends Controller
      */
     public function index()
     {
-        return ResourceResource::collection(Resource::all());
+        return ResourceResource::collection(Resource::with('template.tvs')->get());
     }
 
     /**
