@@ -6,6 +6,7 @@ use App\Http\Resources\Resource as ResourceResource;
 use App\Resource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -74,7 +75,7 @@ class ResourcesController extends Controller
     public function update(Request $request, Resource $resource)
     {
 
-        $resource->update($this->validateData());
+        $resource->update($this->validateData($request));
 
         return (new ResourceResource($resource))
             ->response()
@@ -93,12 +94,15 @@ class ResourcesController extends Controller
     }
 
 
-    private function validateData()
+    private function validateData($request)
     {
+        //make sure alias is regenerated from title if not existing
+        request()->merge(['alias' => request()->alias ? Str::slug(request()->alias, '-') : Str::slug(request()->title, '-')]);
+
         return request()->validate([
             'title' => 'required|max:255',
             'menu_title' => 'max:255',
-            'alias' => 'max:255',
+            'alias' => 'alpha_dash|max:255',
             'description' => 'max:255',
             'content' => '', //TODO: purify
             'type_id' => 'integer',
