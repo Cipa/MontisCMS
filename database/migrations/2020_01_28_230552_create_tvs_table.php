@@ -1,9 +1,9 @@
 <?php
 
 use App\Template;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateTvsTable extends Migration
 {
@@ -20,6 +20,8 @@ class CreateTvsTable extends Migration
             $table->text('caption')->default('');
             $table->text('description')->default('');
             $table->unsignedTinyInteger('type_id')->default(1);
+            $table->longText('default_value')->default('');
+
             $table->timestamps();
         });
     }

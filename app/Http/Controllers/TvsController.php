@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Tv as TvResource;
 use App\Tv;
 use Illuminate\Http\Request;
-use App\Http\Resources\TvResource;
 
 class TvsController extends Controller
 {

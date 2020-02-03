@@ -83,5 +83,17 @@ aside {
 }
 main {
     flex: 3;
-    overflow-y:auto
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+
+
+#FloatingActions{
+    position: absolute;
+    top:0;
+    right: 0;
+    position: sticky;
+    z-index: 1000;
+    width: 100%;
+
 }

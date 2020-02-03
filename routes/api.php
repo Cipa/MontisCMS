@@ -30,8 +30,6 @@ Route::get('/tvs', 'TvController@index');
 
 
 // Route::get('/parse', function () {
-
 //     $data = Resource::where('id', 1)->first();
-
 //     return view('parse')->with(['test' => $data]);
 // });

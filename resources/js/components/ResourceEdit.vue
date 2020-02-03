@@ -1,49 +1,64 @@
 <template>
     <div>
-        <form @submit.prevent="submitForm">
-            <div class="buttons justify-end">
+        <form @submit.prevent="submitForm" class="is-relative has-padding-bottom-20">
+            <div class="buttons justify-end" id="FloatingActions">
                 <b-button tag="input" native-type="submit" value="Save" class="button is-info" />
                 <!-- <button class="button is-success">Success</button>
             <button class="button is-warning">Warning</button>
                 <button class="button is-danger">Danger</button>-->
             </div>
 
+            <div v-for="tv in form.template.tvs" :key="tv.id">
+                <b-field :label="tv.caption" :label-for="'tv_' + tv.id" :message="tv.description">
+                    <b-input v-model="tv.value.value" type="textarea" :id="'tv_' + tv.id"></b-input>
+                </b-field>
+            </div>
+
             <b-field
                 label="Title"
+                label-for="title"
                 :type="{'is-danger': (errors && errors.title)}"
                 :message="(errors && errors.title) ? errors.title : ''"
             >
-                <b-input v-model="form.title" placeholder="Title"></b-input>
+                <b-input v-model="form.title" placeholder="Title" id="title"></b-input>
             </b-field>
 
             <b-field
                 label="Menu Title"
+                label-for="menu_title"
                 :type="{'is-danger': (errors && errors.menu_title)}"
                 :message="(errors && errors.menu_title) ? errors.menu_title : ''"
             >
-                <b-input v-model="form.menu_title" placeholder="Menu Title"></b-input>
+                <b-input v-model="form.menu_title" placeholder="Menu Title" id="menu_title"></b-input>
             </b-field>
 
             <b-field
                 label="Alias"
+                label-for="alias"
                 :type="{'is-danger': (errors && errors.alias)}"
                 :message="(errors && errors.alias) ? errors.alias : ''"
             >
-                <b-input v-model="form.alias" placeholder="Alias"></b-input>
+                <b-input v-model="form.alias" placeholder="Alias" id="alias"></b-input>
             </b-field>
 
-            <b-field label="Description">
+            <b-field label="Description" label-for="description">
                 <b-input
                     v-model="form.description"
                     placeholder="Description"
                     maxlength="200"
                     type="textarea"
+                    id="description"
                 ></b-input>
             </b-field>
 
             <div class="columns">
-                <b-field label="Resource Type" class="column">
-                    <b-select placeholder="Select a type" v-model="form.type_id" expanded>
+                <b-field label="Resource Type" class="column" label-for="type_id">
+                    <b-select
+                        placeholder="Select a type"
+                        v-model="form.type_id"
+                        expanded
+                        id="type_id"
+                    >
                         <option
                             v-for="type in types"
                             :value="type.id"
@@ -51,8 +66,13 @@
                         >{{ type.name }}</option>
                     </b-select>
                 </b-field>
-                <b-field label="Template" class="column">
-                    <b-select placeholder="Select a template" v-model="form.template_id" expanded>
+                <b-field label="Template" class="column" label-for="template_id">
+                    <b-select
+                        placeholder="Select a template"
+                        v-model="form.template_id"
+                        expanded
+                        id="template_id"
+                    >
                         <option
                             v-for="template in templates"
                             :value="template.id"
@@ -63,23 +83,23 @@
             </div>
 
             <div class="field">
-                <label class="label">Content</label>
+                <label class="label" id="content">Content</label>
                 <div class="control">
                     <editor
                         v-model="form.content"
                         :init="{
-                    height: 200,
-                    menubar: false,
-                    plugins: [
-                    'advlist autolink lists link image charmap print preview anchor',
-                    'searchreplace visualblocks code fullscreen',
-                    'insertdatetime media table paste code help wordcount'
-                    ],
-                    toolbar:
-                    'undo redo | formatselect | bold italic backcolor | \
-                    alignleft aligncenter alignright alignjustify | \
-                    bullist numlist outdent indent | removeformat | code help'
-                }"
+                            height: 200,
+                            menubar: false,
+                            plugins: [
+                                'advlist autolink lists link image charmap print preview anchor',
+                                'searchreplace visualblocks code fullscreen',
+                                'insertdatetime media table paste code help wordcount'
+                            ],
+                            toolbar:
+                                'undo redo | formatselect | bold italic backcolor | \
+                                alignleft aligncenter alignright alignjustify | \
+                                bullist numlist outdent indent | removeformat | code help'
+                        }"
                     ></editor>
                 </div>
             </div>
@@ -104,7 +124,8 @@ export default {
                 alias: "",
                 content: "",
                 type_id: "",
-                template_id: ""
+                template_id: "",
+                template: ""
             },
 
             types: [],
@@ -132,6 +153,11 @@ export default {
                 .patch("/api/resources/" + this.$route.params.id, this.form)
                 .then(response => {
                     this.$store.dispatch("loadResourcesTree");
+
+                    this.$router.push({
+                        name: "resourceOverview",
+                        params: { id: response.data.data.id }
+                    });
                 })
                 .catch(errors => {
                     this.errors = errors.response.data.errors;

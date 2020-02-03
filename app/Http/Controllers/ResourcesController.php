@@ -51,7 +51,12 @@ class ResourcesController extends Controller
      */
     public function show(Resource $resource)
     {
-        return new ResourceResource($resource);
+        //return new ResourceResource($resource);
+        return new ResourceResource(
+            Resource::with(['template.tvs', 'template.tvs.value' => function ($q) use ($resource) {
+                $q->where('resource_id', $resource->id); //only one value per tv/resource
+            }])->first()
+        );
     }
 
     /**
