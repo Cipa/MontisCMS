@@ -17,9 +17,7 @@ class Template extends JsonResource
         return array_merge(
             parent::toArray($request),
             [
-                'tvs' => new TvCollection($this->tvs),
-                'tvs1' => Tv::collection($this->tvs),
-                //'posts' => PostResource::collection($this->posts),
+                'tvs' => Tv::collection($this->tvs),
             ]
         );
     }
