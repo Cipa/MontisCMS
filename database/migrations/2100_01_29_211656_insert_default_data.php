@@ -34,6 +34,14 @@ class InsertDefaultData extends Migration
             'description' => 'Default Test TV',
             'type_id' => 1
         ]);
+        $tv->templates()->attach(1);
+
+        $tv = App\Tv::create([
+            'name' => 'test2',
+            'caption' => 'Test TV 2',
+            'description' => 'Default Test TV 2',
+            'type_id' => 1
+        ]);
 
         $tv->templates()->attach(1);
     }

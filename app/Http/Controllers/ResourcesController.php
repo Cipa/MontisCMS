@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\Resource as ResourceResource;
 use App\Resource;
+use App\TvValue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -51,12 +52,21 @@ class ResourcesController extends Controller
      */
     public function show(Resource $resource)
     {
-        //return new ResourceResource($resource);
-        return new ResourceResource(
-            Resource::with(['template.tvs', 'template.tvs.value' => function ($q) use ($resource) {
-                $q->where('resource_id', $resource->id); //only one value per tv/resource
-            }])->first()
-        );
+
+        // dd(TvValue::where('tv_id', 1)->with('tv')->get()->toArray());
+
+        return new ResourceResource($resource);
+
+        // return new ResourceResource(
+        //     Resource::with(['tvValues.tv'])->first()
+        // );
+
+
+        // return new ResourceResource(
+        //     Resource::with(['template.tvs', 'template.tvs.value' => function ($q) use ($resource) {
+        //         $q->where('resource_id', $resource->id); //only one value per tv/resource
+        //     }])->first()
+        // );
     }
 
     /**
@@ -65,10 +75,10 @@ class ResourcesController extends Controller
      * @param  \App\Resource  $resource
      * @return \Illuminate\Http\Response
      */
-    public function edit(Resource $Resource)
-    {
-        //
-    }
+    // public function edit(Resource $Resource)
+    // {
+    //     //
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -80,7 +90,16 @@ class ResourcesController extends Controller
     public function update(Request $request, Resource $resource)
     {
 
-        $resource->update($this->validateData($request));
+        //remove TVs
+        $validatedData = $this->validateData($request);
+        $tvValues = $validatedData['tv_values'];
+
+        unset($validatedData['tv_values']);
+        $resource->update($validatedData); //update resource
+
+        foreach ($tvValues as $key => $value) {
+            $resource->tvValues()->where('tv_id', $key)->update($value); //update tvs
+        }
 
         return (new ResourceResource($resource))
             ->response()
@@ -101,17 +120,23 @@ class ResourcesController extends Controller
 
     private function validateData($request)
     {
-        //make sure alias is regenerated from title if not existing
+        //make sure alias is regenerated from title, if empty
         request()->merge(['alias' => request()->alias ? Str::slug(request()->alias, '-') : Str::slug(request()->title, '-')]);
 
-        return request()->validate([
+        $validateWith = [
             'title' => 'required|max:255',
             'menu_title' => 'max:255',
             'alias' => 'alpha_dash|max:255',
             'description' => 'max:255',
-            'content' => '', //TODO: purify
+            'content' => 'present', //TODO: purify
             'type_id' => 'integer',
             'template_id' => 'integer',
-        ]);
+        ];
+
+        foreach (request()->tv_values as $key => $tv_value) {
+            $validateWith['tv_values.' . $key . '.value'] = 'present';
+        }
+
+        return request()->validate($validateWith);
     }
 }

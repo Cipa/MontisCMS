@@ -8,11 +8,23 @@
                 <button class="button is-danger">Danger</button>-->
             </div>
 
-            <div v-for="tv in form.template.tvs" :key="tv.id">
-                <b-field :label="tv.caption" :label-for="'tv_' + tv.id" :message="tv.description">
-                    <b-input v-model="tv.value.value" type="textarea" :id="'tv_' + tv.id"></b-input>
+            <!-- <div v-if="form.template"></div> -->
+
+            <div v-for="(tv_value, id) in form.tv_values" :key="id">
+                <b-field
+                    :label="tv_value.tv.caption"
+                    :label-for="'tv_value['+id+'][value]'"
+                    :type="{'is-danger': (errors && errors.tv_1)}"
+                >
+                    <b-input
+                        v-model="tv_value.value"
+                        type="textarea"
+                        :id="'tv_value['+id+'][value]'"
+                    ></b-input>
                 </b-field>
             </div>
+
+            <!-- :message="tv_value.tv.description" -->
 
             <b-field
                 label="Title"
@@ -125,7 +137,7 @@ export default {
                 content: "",
                 type_id: "",
                 template_id: "",
-                template: ""
+                tv_values: []
             },
 
             types: [],
@@ -139,6 +151,20 @@ export default {
             .get("/api/resources/" + this.$route.params.id)
             .then(response => {
                 this.form = response.data.data;
+
+                // this.form.title = response.data.data.title;
+                // this.form.description = response.data.data.description;
+                // this.form.menu_title = response.data.data.menu_title;
+                // this.form.alias = response.data.data.alias;
+                // this.form.content = response.data.data.content;
+                // this.form.type_id = response.data.data.type_id;
+                // this.form.template_id = response.data.data.template_id;
+
+                // response.data.data.template.tvs.forEach(element => {
+                //     console.log(element);
+
+                //     this.form.tvs[] =
+                // });
             })
             .catch(error => {
                 alert(error);
@@ -154,14 +180,17 @@ export default {
                 .then(response => {
                     this.$store.dispatch("loadResourcesTree");
 
-                    this.$router.push({
-                        name: "resourceOverview",
-                        params: { id: response.data.data.id }
-                    });
+                    // this.$router.push({
+                    //     name: "resourceOverview",
+                    //     params: { id: response.data.data.id }
+                    // });
                 })
                 .catch(errors => {
                     this.errors = errors.response.data.errors;
-                    throw new Error(`API ${errors}`);
+                    // console.log(this.$refs);
+                    // console.log();
+
+                    // throw new Error(`API ${errors}`);
                 });
         },
         getTypes: function() {

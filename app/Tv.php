@@ -28,8 +28,8 @@ class Tv extends Model
     }
 
     //help get only one value per tv/resource, make sure where is used in the query
-    public function value(): HasOne
-    {
-        return $this->hasOne('App\TvValue');
-    }
+    // public function value(): HasOne
+    // {
+    //     return $this->hasOne('App\TvValue');
+    // }
 }

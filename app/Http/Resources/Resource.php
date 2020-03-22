@@ -24,6 +24,7 @@ class Resource extends JsonResource
             parent::toArray($request),
             [
                 'template' => new TemplateResource($this->template),
+                'tv_values' => TvValue::collection($this->tvValues)->keyBy('tv_id'),
                 'type' => $this->type,
                 'parsedContent' => $parsedContent
             ]
