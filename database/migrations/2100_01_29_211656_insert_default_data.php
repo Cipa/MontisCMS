@@ -50,6 +50,16 @@ class InsertDefaultData extends Migration
         ]);
         $tv->templates()->attach(1);
 
+        //third test tv - will not be populated
+        $tv = App\Tv::create([
+            'name' => 'simpleText',
+            'caption' => 'Simple Text',
+            'description' => 'Simple Text',
+            'type_id' => 3,
+            'default_value' => 'Default simple text',
+        ]);
+        $tv->templates()->attach(1);
+
         //populate TV
         App\TvValue::create([
             'resource_id' => 1,
