@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class TvValue extends Model
 {
+    protected $guarded = [];
+
     public $timestamps = false;
 
     public function tv(): HasOne

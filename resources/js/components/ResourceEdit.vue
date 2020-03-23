@@ -17,6 +17,31 @@
                     :type="{'is-danger': (errors && errors.tv_1)}"
                 >
                     <b-input
+                        v-if="tv_value.tv.type_id === 1"
+                        v-model="tv_value.value"
+                        :id="'tv_value['+id+'][value]'"
+                    ></b-input>
+
+                    <editor
+                        v-if="tv_value.tv.type_id === 2"
+                        v-model="tv_value.value"
+                        :init="{
+                            height: 200,
+                            menubar: false,
+                            plugins: [
+                                'advlist autolink lists link image charmap print preview anchor',
+                                'searchreplace visualblocks code fullscreen',
+                                'insertdatetime media table paste code help wordcount'
+                            ],
+                            toolbar:
+                                'undo redo | formatselect | bold italic backcolor | \
+                                alignleft aligncenter alignright alignjustify | \
+                                bullist numlist outdent indent | removeformat | code help'
+                        }"
+                    ></editor>
+
+                    <b-input
+                        v-if="tv_value.tv.type_id === 3"
                         v-model="tv_value.value"
                         type="textarea"
                         :id="'tv_value['+id+'][value]'"

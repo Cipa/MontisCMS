@@ -24,26 +24,45 @@ class InsertDefaultData extends Migration
 
         //defaults
         App\TvType::create(['name' => 'Text']);
+        App\TvType::create(['name' => 'Rich Text']);
+        App\TvType::create(['name' => 'Text Area']);
         // App\TvType::create(['name' => 'Email']);
         // App\TvType::create(['name' => 'Image']);
         //...
 
+        //first test TV
         $tv = App\Tv::create([
-            'name' => 'test',
-            'caption' => 'Test TV',
-            'description' => 'Default Test TV',
-            'type_id' => 1
+            'name' => 'customTitle',
+            'caption' => 'Custom Title',
+            'description' => 'A custom title',
+            'type_id' => 1,
+            'default_value' => 'Lorem Ipsum Custom Title',
         ]);
         $tv->templates()->attach(1);
 
+        //second test tv
         $tv = App\Tv::create([
-            'name' => 'test2',
-            'caption' => 'Test TV 2',
-            'description' => 'Default Test TV 2',
-            'type_id' => 1
+            'name' => 'moreContent',
+            'caption' => 'More Content',
+            'description' => 'More content',
+            'type_id' => 2,
+            'default_value' => '<p>Additional content</p>',
+        ]);
+        $tv->templates()->attach(1);
+
+        //populate TV
+        App\TvValue::create([
+            'resource_id' => 1,
+            'tv_id' => 1,
+            'value' => 'Not the default Lorem Ipsum Custom Title',
         ]);
 
-        $tv->templates()->attach(1);
+        //populate TV
+        App\TvValue::create([
+            'resource_id' => 1,
+            'tv_id' => 2,
+            'value' => '<p>Not the default additional content</p>',
+        ]);
     }
 
     /**
