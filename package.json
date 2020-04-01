@@ -10,26 +10,26 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
-        "axios": "^0.19",
+        "axios": "^0.19.2",
         "cross-env": "^5.1",
-        "laravel-mix": "^5.0.1",
+        "laravel-mix": "^5.0.4",
         "lodash": "^4.17.13",
-        "popper.js": "^1.12",
+        "popper.js": "^1.16.1",
         "resolve-url-loader": "^2.3.1",
-        "sass": "^1.24.4",
+        "sass": "^1.26.3",
         "sass-loader": "^7.3.1",
-        "stylelint": "^13.0.0",
+        "stylelint": "^13.2.1",
         "stylelint-config-recommended": "^3.0.0",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "@tinymce/tinymce-vue": "^3.0.1",
-        "buefy": "^0.8.9",
-        "bulma-helpers": "^0.3.8",
-        "tailwindcss": "^1.1.4",
-        "tinymce": "^5.1.5",
-        "vue-router": "^3.1.5",
-        "vuex": "^3.1.2"
+        "@tinymce/tinymce-vue": "^3.2.0",
+        "buefy": "^0.8.15",
+        "bulma-helpers": "^0.3.10",
+        "tailwindcss": "^1.2.0",
+        "tinymce": "^5.2.1",
+        "vue-router": "^3.1.6",
+        "vuex": "^3.1.3"
     }
 }
